@@ -27,11 +27,20 @@ exports.login = async (req, res) => {
     if (eUser) {
         if (eUser.password === password) {
           const token = jwt.sign({ id: eUser._id }, "MyAPPSECRET", { expiresIn: "24h" })
-            return res.status(200).json({ message: "successfully logged in"})
+            return res.status(200).json({ message: "successfully logged in",token})
         } else { return res.status(401).json({ message: "password incorrect" }) }
     }
     else {
         return res.status(404).json({ message: "user not found please sign up" })
     }
 
+}   
+exports.updateUser =async (req,res)=>{
+    try {
+        const newData = req.body;
+        const updatedUser = await Users.findByIdAndUpdate(req.id,newData)
+        return res.status(200).json({message:"id updated"})
+    } catch (e) {
+        return res.status(404).json({message:"you are not the user"})
+    }
 }

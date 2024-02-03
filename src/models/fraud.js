@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 
 
-const form = new mongoose.Schema({
+const fraud = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -15,19 +15,15 @@ const form = new mongoose.Schema({
         type: String,
         required: true
     },
-    fraudType: {
-        type: String,
-        required: true
-    },
-    FraudsterName: {
-        type: String,
-        required: true
-    },
-    FraudsterMobile: {
+transactionAmount: {
         type: Number,
         required: true
     },
-    description: {
+    fraudsterMobile: {
+        type: Number,
+        required: true
+    },
+    userBehaviour: {
         type: String,
         required: true
     }
